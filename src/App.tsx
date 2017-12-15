@@ -3,7 +3,13 @@ import './App.css';
 
 const logo = require('./logo.svg');
 
-function Square(props: any) {
+interface PropTypes {
+  // onClick: () => void;
+  value: [string | null];
+  onClick(): void;
+}
+
+function Square(props: PropTypes) {
   return (
     <button className="square" onClick={props.onClick}>
       {props.value}
@@ -30,9 +36,12 @@ function Square(props: any) {
 //     {value}
 //   </button>
 // )
-
-class App extends React.Component<any, any> {
-  constructor(props: any) {
+interface StateTypes {
+  squares: Array<string | null>;
+  xIsNext: boolean;
+}
+class App extends React.Component<void, StateTypes> {
+  constructor(props: void) {
     super(props);
     this.state = {
       squares: Array(81).fill(null),
